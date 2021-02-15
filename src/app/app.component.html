@@ -1,8 +1,13 @@
 <!-- top navbar is shown only when user is logger in -->
 <app-navbar></app-navbar>
-<div>
+<mat-sidenav-container>
     <!-- side menu bar is shown only when user is logger in (and we could add some other logic) -->
-    <div>Side menu bar</div>
-    <router-outlet></router-outlet>
-</div>
+    <mat-sidenav #sidenav mode="side" [(opened)]="sidemenuOpened">
+        <app-sidemenu></app-sidemenu>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <p><mat-checkbox [(ngModel)]="sidemenuOpened">sidenav.opened</mat-checkbox></p>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
 
