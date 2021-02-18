@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidemenuComponent } from './sidemenu.component';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -10,7 +11,8 @@ import { SidemenuComponent } from './sidemenu.component';
         SidemenuComponent
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        MatListModule,
     ]
 })
 export class SidemenuModule { }
