@@ -4,6 +4,10 @@ import { SigninLoginComponent } from './login/signin-login.component';
 import { SigninForgotPasswordComponent } from './forgot-password/signin-forgot-password.component';
 import { SigninJoinComponent } from './join/signin-join.component';
 import {SigninRoutingModule} from './signin-routing.module';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldControl, MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
 
 
@@ -12,6 +16,11 @@ import {SigninRoutingModule} from './signin-routing.module';
     imports: [
         CommonModule,
         SigninRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
     ]
 })
 export class SigninModule { }
