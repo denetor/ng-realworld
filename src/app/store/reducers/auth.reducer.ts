@@ -2,13 +2,13 @@ import {createReducer, on} from '@ngrx/store';
 import {authenticate, authenticateSuccess} from '../actions/auth.actions';
 
 export interface AuthState {
-    access_token: string | null;
-    currentUser: any | null;
+    accessToken: string | null;
+    user: any | null;
 }
 
 const initialState: AuthState = {
-    access_token: null,
-    currentUser: null,
+    accessToken: null,
+    user: null,
 };
 
 export const authReducer = createReducer(
@@ -21,6 +21,10 @@ export const authReducer = createReducer(
     on(authenticateSuccess, (state: AuthState, action) => {
         console.log('authReducer.authenticateSuccess');
         console.log({state, action});
-        return action.payload;
+        const newState = {
+            accessToken: action && action.payload && action.payload.access_token ? action.payload.access_token : null,
+            user: null,
+        };
+        return newState;
     }),
 );
