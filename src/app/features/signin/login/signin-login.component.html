@@ -16,7 +16,8 @@
         </mat-form-field>
         <div class="app-actions">
             <button
-                [disabled]="!loginForm.valid"
+                _disabled_="!loginForm.valid"
+                (click)="doLogin()"
                 mat-raised-button
                 color="primary">Sign in</button>
         </div>

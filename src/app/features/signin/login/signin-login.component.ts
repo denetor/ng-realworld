@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import {LoginDto} from '../../../store/models/login.model';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../../app.module';
+import {authenticate} from '../../../store/actions/auth.actions';
 
 @Component({
   selector: 'app-signin-login',
@@ -15,9 +19,22 @@ export class SigninLoginComponent implements OnInit {
         Validators.required,
     ]);
 
-    constructor() { }
+    constructor(
+        private store: Store<AppState>
+    ) { }
 
     ngOnInit(): void {
+    }
+
+    // perform login
+    doLogin(): void {
+        const dto: LoginDto = {
+            email: this.emailFormControl.value,
+            password: this.passwordFormControl.value,
+        };
+        console.log('SigninLoginComponent.doLogin(): dispatching authenticate event');
+        console.log({dto});
+        this.store.dispatch(authenticate(dto));
     }
 
 }
