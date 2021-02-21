@@ -14,17 +14,17 @@ const initialState: AuthState = {
 export const authReducer = createReducer(
     initialState,
     on(authenticate, (state: AuthState, action) => {
-        console.log('authReducer.authenticate');
-        console.log({state, action});
         return state;
     }),
     on(authenticateSuccess, (state: AuthState, action) => {
-        console.log('authReducer.authenticateSuccess');
-        console.log({state, action});
+        // console.log('authReducer.authenticateSuccess');
+        // console.log({state, action});
         const newState = {
             accessToken: action && action.payload && action.payload.access_token ? action.payload.access_token : null,
             user: null,
         };
+        // save accessToken in localStorage
+        localStorage.setItem('access_token', newState.accessToken);
         return newState;
     }),
 );
