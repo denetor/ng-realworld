@@ -1,14 +1,14 @@
 <!-- top navbar is shown only when user is logged in -->
-<app-navbar></app-navbar>
-<mat-sidenav-container class="app-container">
-    <!-- side menu bar is shown only when user is logger in (and we could add some other logic) -->
-    <mat-sidenav #sidenav mode="side" [(opened)]="sidemenuOpened">
-        <app-sidemenu [auth]="auth$"></app-sidemenu>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <p><mat-checkbox [(ngModel)]="sidemenuOpened">sidenav.opened</mat-checkbox></p>
-        <router-outlet></router-outlet>
-        <div>{{ (auth$ | async).accessToken }}</div>
-    </mat-sidenav-content>
-</mat-sidenav-container>
-
+<div class="app-container">
+    <app-navbar></app-navbar>
+    <mat-sidenav-container class="app-flex-fill">
+        <!-- side menu bar is shown only when user is logger in (and we could add some other logic) -->
+        <mat-sidenav #sidenav mode="side" [(opened)]="sidemenuOpened" *ngIf="(auth$ | async).accessToken">
+            <app-sidemenu [auth]="auth$"></app-sidemenu>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <p><mat-checkbox [(ngModel)]="sidemenuOpened">sidenav.opened</mat-checkbox></p>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
