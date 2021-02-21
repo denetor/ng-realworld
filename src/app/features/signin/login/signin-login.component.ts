@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import {LoginDto} from '../../../store/models/login.model';
+import {LoginDto} from '../../../store/auth/login.model';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../app.module';
-import {authenticate} from '../../../store/actions/auth.actions';
+import {authenticate} from '../../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-signin-login',

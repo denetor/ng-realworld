@@ -1,5 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import {LoginDto, LoginResponseDto} from '../models/login.model';
+import {LoginDto, LoginResponseDto} from './login.model';
 
 
 export const authenticate = createAction(

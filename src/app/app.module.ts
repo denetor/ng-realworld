@@ -12,11 +12,11 @@ import {ActionReducerMap, StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 import {environment} from '../environments/environment';
-import * as fromAuth from './store/reducers/auth.reducer';
-import {authReducer} from './store/reducers/auth.reducer';
-import {AuthEffects} from './store/effects/auth.effects';
+import * as fromAuth from './store/auth/auth.reducer';
+import {AuthEffects} from './store/auth/auth.effects';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './core/interceptors/auth.interceptor';
+import {authReducer} from './store/auth/auth.reducer';
 
 
 export interface AppState {
