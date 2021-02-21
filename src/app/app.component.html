@@ -8,6 +8,7 @@
     <mat-sidenav-content>
         <p><mat-checkbox [(ngModel)]="sidemenuOpened">sidenav.opened</mat-checkbox></p>
         <router-outlet></router-outlet>
+        <div>{{ (auth$ | async).accessToken }}</div>
     </mat-sidenav-content>
 </mat-sidenav-container>
 

@@ -11,19 +11,9 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./sidemenu.component.sass']
 })
 export class SidemenuComponent implements OnInit {
-    accessToken$: Observable<any>;
-
-    constructor(
-        private store: Store<AppState>
-    ) { }
+    constructor() { }
 
     ngOnInit(): void {
-        this.accessToken$ = this.store.pipe(
-            select(accessToken),
-            map(value => {
-                console.log(value);
-            })
-        );
     }
 
 }
