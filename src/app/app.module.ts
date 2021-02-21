@@ -15,7 +15,8 @@ import {environment} from '../environments/environment';
 import * as fromAuth from './store/reducers/auth.reducer';
 import {authReducer} from './store/reducers/auth.reducer';
 import {AuthEffects} from './store/effects/auth.effects';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptor} from './core/interceptors/auth.interceptor';
 
 
 export interface AppState {
@@ -45,7 +46,9 @@ export const reducers: ActionReducerMap<AppState> = {
         NavbarModule,
         SidemenuModule,
     ],
-    providers: [],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
