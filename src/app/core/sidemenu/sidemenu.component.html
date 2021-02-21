@@ -1,14 +1,21 @@
 <mat-selection-list #mainmenu [multiple]="false">
+    <!-- menu items visible to all users -->
     <mat-list-option value="home" routerLink="/">
         Home
     </mat-list-option>
-    <mat-list-option value="adminarea">
-        Admin area
-    </mat-list-option>
-    <mat-list-option value="login" routerLink="/signin">
+
+    <!-- menu items visible only to logged users -->
+    <ng-container *ngIf="(auth$ | async).accessToken">
+        <mat-list-option value="adminarea">
+            Admin area
+        </mat-list-option>
+        <mat-list-option value="logout">
+            Logout
+        </mat-list-option>
+    </ng-container>
+
+    <!-- login available only for non-logged users -->
+    <mat-list-option value="login" routerLink="/signin"  *ngIf="!(auth$ | async).accessToken">
         Login
-    </mat-list-option>
-    <mat-list-option value="logout">
-        Logout
     </mat-list-option>
 </mat-selection-list>

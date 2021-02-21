@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {select, Store} from '@ngrx/store';
-import {accessToken} from './store/selectors/auth.selectors';
-import {map} from 'rxjs/operators';
+import {Store} from '@ngrx/store';
 import {AppState} from './app.module';
 
 @Component({
@@ -20,11 +18,5 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         this.auth$ = this.store.select('auth');
-        // this.accessToken$ = this.store.pipe(
-        //     select(accessToken),
-        //     // map(value => {
-        //     //     console.log(value);
-        //     // })
-        // );
     }
 }

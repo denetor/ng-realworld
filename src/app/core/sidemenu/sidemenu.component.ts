@@ -1,9 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {AppState} from '../../app.module';
-import {select, Store} from '@ngrx/store';
-import {accessToken} from '../../store/selectors/auth.selectors';
-import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-sidemenu',
@@ -11,6 +7,12 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./sidemenu.component.sass']
 })
 export class SidemenuComponent implements OnInit {
+    @Input()
+    set auth(auth: any) {
+        this.auth$ = auth;
+    }
+    auth$: Observable<any>;
+
     constructor() { }
 
     ngOnInit(): void {
