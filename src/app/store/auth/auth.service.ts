@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {LoginDto} from './login.model';
+import {LoginDto, LoginResponseDto} from './login.model';
 import {environment} from '../../../environments/environment';
-import {authenticateSuccess} from './auth.actions';
+import {authenticateSuccess, readCurrentUser} from './auth.actions';
 import {AppState} from '../../app.module';
 import {Store} from '@ngrx/store';
 
@@ -21,9 +21,12 @@ export class AuthService {
     // read accessToken from localStorage. If present, emit action to put it in store
     // abd read logged user's details
     readAccessTokenFromPersistentStorage(): void {
+        console.log('readAccessTokenFromPersistentStorage()');
         const accessToken = localStorage.getItem('access_token');
+        console.log({accessToken});
         if (accessToken) {
             this.store.dispatch(authenticateSuccess({access_token: accessToken}));
+            this.store.dispatch(readCurrentUser(null));
             // TODO this.store.dispatch(readCurrentUser);
         }
     }

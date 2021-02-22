@@ -14,19 +14,19 @@ export class AuthEffects {
                 // https://stackoverflow.com/questions/55314049/how-to-dispatch-multiple-actions-from-ngrx-7-effects?rq=1
                 switchMap(authResponse => [
                     {type: '[auth] authenticate success', payload: authResponse},
-                    {type: '[auth] loadCurrentUser', payload: authResponse},
+                    {type: '[auth] readCurrentUser', payload: authResponse},
                 ]),
                 catchError(() => EMPTY)
             )
         ))
     );
 
-    loadCurrentUser$ = createEffect(() => this.actions$.pipe(
-        ofType('[auth] loadCurrentUser'),
+    readCurrentUser$ = createEffect(() => this.actions$.pipe(
+        ofType('[auth] readCurrentUser'),
         mergeMap((action) => this.usersService.getMyself()
             .pipe(
                 map(response => {
-                    console.log('AuthEffects.loadCurrentUser response:');
+                    console.log('AuthEffects.readCurrentUser response:');
                     console.log({response});
                     return {type: '[auth] readCurrentUser success', payload: response};
                 }),
