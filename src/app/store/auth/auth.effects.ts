@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {catchError, map, mergeMap} from 'rxjs/operators';
+import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
 import {EMPTY} from 'rxjs';
 import {AuthService} from './auth.service';
+import {UsersService} from '../users/users.service';
 
 @Injectable()
 export class AuthEffects {
@@ -10,10 +11,24 @@ export class AuthEffects {
         ofType('[auth] authenticate'),
         mergeMap((action) => this.authService.authenticate(action)
             .pipe(
-                map(authResponse => {
-                    console.log('AuthEffects.authenticate authResponse:');
-                    console.log({authResponse});
-                    return {type: '[auth] authenticate success', payload: authResponse};
+                // https://stackoverflow.com/questions/55314049/how-to-dispatch-multiple-actions-from-ngrx-7-effects?rq=1
+                switchMap(authResponse => [
+                    {type: '[auth] authenticate success', payload: authResponse},
+                    {type: '[auth] loadCurrentUser', payload: authResponse},
+                ]),
+                catchError(() => EMPTY)
+            )
+        ))
+    );
+
+    loadCurrentUser$ = createEffect(() => this.actions$.pipe(
+        ofType('[auth] loadCurrentUser'),
+        mergeMap((action) => this.usersService.getMyself()
+            .pipe(
+                map(response => {
+                    console.log('AuthEffects.loadCurrentUser response:');
+                    console.log({response});
+                    return {type: '[auth] readCurrentUser success', payload: response};
                 }),
                 catchError(() => EMPTY)
             )
@@ -22,6 +37,7 @@ export class AuthEffects {
 
     constructor(
         private actions$: Actions,
-        private authService: AuthService
+        private authService: AuthService,
+        private usersService: UsersService
     ) {}
 }

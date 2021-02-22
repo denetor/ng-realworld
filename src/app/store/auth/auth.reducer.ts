@@ -1,5 +1,5 @@
 import {createReducer, on} from '@ngrx/store';
-import {authenticate, authenticateSuccess} from './auth.actions';
+import {authenticate, authenticateSuccess, readCurrentUser, readCurrentUserSuccess} from './auth.actions';
 
 export interface AuthState {
     accessToken: string | null;
@@ -25,6 +25,16 @@ export const authReducer = createReducer(
         };
         // save accessToken in localStorage
         localStorage.setItem('access_token', newState.accessToken);
+        return newState;
+    }),
+    on(readCurrentUser, (state: AuthState, action) => {
+        return state;
+    }),
+    on(readCurrentUserSuccess, (state: AuthState, action) => {
+        console.log('on readCurrentUserSuccess');
+        console.log({state, action});
+        const newState = {...state, user: action.payload};
+        console.log({newState});
         return newState;
     }),
 );

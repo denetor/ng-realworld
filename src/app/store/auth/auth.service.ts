@@ -24,6 +24,7 @@ export class AuthService {
         const accessToken = localStorage.getItem('access_token');
         if (accessToken) {
             this.store.dispatch(authenticateSuccess({access_token: accessToken}));
+            // TODO this.store.dispatch(readCurrentUser);
         }
     }
 
