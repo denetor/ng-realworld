@@ -1,9 +1,10 @@
 import {createReducer, on} from '@ngrx/store';
 import {authenticate, authenticateSuccess, readCurrentUser, readCurrentUserSuccess} from './auth.actions';
+import {UserDto} from '../users/user.model';
 
 export interface AuthState {
     accessToken: string | null;
-    user: any | null;
+    user: UserDto | null;
 }
 
 const initialState: AuthState = {

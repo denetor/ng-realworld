@@ -1,5 +1,6 @@
 import {createAction, props} from '@ngrx/store';
 import {LoginDto, LoginResponseDto} from './login.model';
+import {UserDto} from '../users/user.model';
 
 
 export const authenticate = createAction(
@@ -17,5 +18,5 @@ export const readCurrentUser = createAction(
 );
 export const readCurrentUserSuccess = createAction(
     '[auth] readCurrentUser success',
-    (loginResponseDto: LoginResponseDto) => ({payload: loginResponseDto})
+    (userDto: UserDto) => ({payload: userDto})
 );

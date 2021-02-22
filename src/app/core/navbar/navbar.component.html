@@ -4,8 +4,8 @@
     </button>
     <span>Real World App</span>
     <span class="spacer"></span>
-    <button mat-icon-button aria-label="User menu">
+    <button mat-icon-button aria-label="Logged user" *ngIf="(auth$ | async).user">
         <fa-icon [icon]="faUser"></fa-icon>
     </button>
-    <span>Name Lastname</span>
+    <span *ngIf="(auth$ | async).user">{{ (auth$ | async).user?.name }} {{ (auth$ | async).user?.lastName }}</span>
 </mat-toolbar>
