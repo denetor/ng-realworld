@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
+import {AuthService} from '../../store/auth/auth.service';
 
 @Component({
   selector: 'app-sidemenu',
@@ -13,9 +14,14 @@ export class SidemenuComponent implements OnInit {
     }
     auth$: Observable<any>;
 
-    constructor() { }
+    constructor(private authService: AuthService) { }
 
     ngOnInit(): void {
+    }
+
+
+    logout() {
+        this.authService.logout();
     }
 
 }

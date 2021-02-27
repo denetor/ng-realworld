@@ -1,5 +1,5 @@
 import {createReducer, on} from '@ngrx/store';
-import {authenticate, authenticateSuccess, readCurrentUser, readCurrentUserSuccess} from './auth.actions';
+import {authenticate, authenticateSuccess, logout, readCurrentUser, readCurrentUserSuccess} from './auth.actions';
 import {UserDto} from '../users/user.model';
 
 export interface AuthState {
@@ -39,4 +39,8 @@ export const authReducer = createReducer(
         console.log({newState});
         return newState;
     }),
+    on(logout, (state: AuthState, action) => {
+        localStorage.removeItem('access_token');
+        return initialState;
+    })
 );

@@ -4,6 +4,8 @@ import {LoginDto} from '../../../store/auth/login.model';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../app.module';
 import {authenticate} from '../../../store/auth/auth.actions';
+import {Observable} from 'rxjs';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-signin-login',
@@ -11,6 +13,7 @@ import {authenticate} from '../../../store/auth/auth.actions';
   styleUrls: ['./signin-login.component.sass']
 })
 export class SigninLoginComponent implements OnInit {
+    auth$: Observable<any>;
     emailFormControl = new FormControl('', [
         Validators.required,
         Validators.email,
@@ -20,10 +23,20 @@ export class SigninLoginComponent implements OnInit {
     ]);
 
     constructor(
-        private store: Store<AppState>
+        private store: Store<AppState>,
+        private router: Router,
     ) { }
 
     ngOnInit(): void {
+        // observe logged user to redirect to home when logged
+        this.auth$ = this.store.select('auth');
+        this.auth$.subscribe(
+            data => {
+                if (data && data.accessToken) {
+                    this.router.navigate(['/']);
+                }
+            }
+        )
     }
 
     // perform login

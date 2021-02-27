@@ -20,3 +20,6 @@ export const readCurrentUserSuccess = createAction(
     '[auth] readCurrentUser success',
     (userDto: UserDto) => ({payload: userDto})
 );
+export const logout = createAction(
+    '[auth] logout'
+);

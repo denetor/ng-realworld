@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {LoginDto, LoginResponseDto} from './login.model';
 import {environment} from '../../../environments/environment';
-import {authenticateSuccess, readCurrentUser} from './auth.actions';
+import {authenticateSuccess, logout, readCurrentUser} from './auth.actions';
 import {AppState} from '../../app.module';
 import {Store} from '@ngrx/store';
 
@@ -33,5 +33,9 @@ export class AuthService {
 
     authenticate(dto: LoginDto) {
         return this.http.post(environment.apiUrl + '/' + this.route + '/login', dto);
+    }
+
+    logout() {
+        this.store.dispatch(logout());
     }
 }
