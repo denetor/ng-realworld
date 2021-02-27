@@ -6,7 +6,7 @@
 
     <!-- menu items visible only to logged users -->
     <ng-container *ngIf="(auth$ | async).accessToken">
-        <mat-list-option value="adminarea">
+        <mat-list-option value="adminarea" routerLink="/admin">
             Admin area
         </mat-list-option>
         <mat-list-option value="logout" (click)="logout();">
