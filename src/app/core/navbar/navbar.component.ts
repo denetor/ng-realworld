@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { faBars, faUser } from '@fortawesome/free-solid-svg-icons';
 import {Observable} from 'rxjs';
 import {AuthState} from '../../store/auth/auth.reducer';
@@ -15,6 +15,9 @@ export class NavbarComponent implements OnInit {
     }
     auth$: Observable<AuthState>;
 
+    @Output()
+    sidemenuToggleEvent = new EventEmitter();
+
     faBars = faBars;
     faUser = faUser;
 
@@ -23,4 +26,8 @@ export class NavbarComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    sidemenuToggle(): void {
+        console.log('NavbarComponent.sidemenuToggle()');
+        this.sidemenuToggleEvent.emit();
+    }
 }

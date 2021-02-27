@@ -25,4 +25,9 @@ export class AppComponent implements OnInit {
         // observe, from the store, the authentication status
         this.auth$ = this.store.select('auth');
     }
+
+    sidemenuToggle(): void {
+        console.log('AppComponent.sidemenuToggle()');
+        this.sidemenuOpened = !this.sidemenuOpened;
+    }
 }
