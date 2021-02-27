@@ -1,4 +1,5 @@
-<div>
-    <a routerLink="/signin">Log in</a> <a routerLink="/signin/join">Sign up</a>
+<div *ngIf="!(auth$ | async).accessToken">
+    <a routerLink="/signin">Log in</a><br />
+    <a routerLink="/signin/join">Sign up</a>
 </div>
 <p>welcome index works!</p>

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../../app.module';
+import {AuthState} from '../../../store/auth/auth.reducer';
 
 @Component({
   selector: 'app-welcome-index',
@@ -6,10 +10,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome-index.component.sass']
 })
 export class WelcomeIndexComponent implements OnInit {
+    auth$: Observable<AuthState>;
 
-  constructor() { }
+    constructor(
+        private store: Store<AppState>,
+    ) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+        this.auth$ = this.store.select('auth');
+    }
 
 }
