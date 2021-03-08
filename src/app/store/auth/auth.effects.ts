@@ -7,6 +7,12 @@ import {UsersService} from '../users/users.service';
 
 @Injectable()
 export class AuthEffects {
+    constructor(
+        private actions$: Actions,
+        private authService: AuthService,
+        private usersService: UsersService
+    ) {}
+
     authenticate$ = createEffect(() => this.actions$.pipe(
         ofType('[auth] authenticate'),
         mergeMap((action) => this.authService.authenticate(action)
@@ -34,10 +40,4 @@ export class AuthEffects {
             )
         ))
     );
-
-    constructor(
-        private actions$: Actions,
-        private authService: AuthService,
-        private usersService: UsersService
-    ) {}
 }

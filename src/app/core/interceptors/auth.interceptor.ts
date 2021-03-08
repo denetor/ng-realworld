@@ -13,14 +13,20 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(
         private store: Store<AppState>
     ) {
-        this.store.select('auth').subscribe(
-            authData => {
-                this.accessToken = authData.accessToken;
-            },
-            err => {
-                this.accessToken = null;
-            }
-        );
+        // note: cannot read accessToken from the store, it's not imediately available
+        // and some API requests may be sent without it
+        if (localStorage.getItem('access_token')) {
+            this.accessToken = localStorage.getItem('access_token');
+        } else {
+            this.store.select('auth').subscribe(
+                authData => {
+                    this.accessToken = authData.accessToken;
+                },
+                err => {
+                    this.accessToken = null;
+                }
+            );
+        }
     }
 
 

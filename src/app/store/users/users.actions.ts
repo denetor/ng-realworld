@@ -1,5 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import {LoginResponseDto} from '../auth/login.model';
+import {LoginDto, LoginResponseDto} from '../auth/login.model';
 import {UserDto} from './user.model';
 
 
@@ -11,4 +11,14 @@ export const authenticate = createAction(
 export const authenticateSuccess = createAction(
     '[users] authenticate success',
     (userDto: UserDto) => ({payload: userDto})
+);
+export const usersGetAll = createAction(
+    '[users]getAll'
+);
+export const usersGetAllSuccess = createAction(
+    '[users]getAll.success',
+    (users: UserDto[]) => ({payload: users})
+);
+export const usersGetAllFailure = createAction(
+    '[users]getAll.failure'
 );

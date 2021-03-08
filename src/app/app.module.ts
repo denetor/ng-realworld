@@ -13,19 +13,24 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 import {environment} from '../environments/environment';
 import * as fromAuth from './store/auth/auth.reducer';
+import * as fromUsers from './store/users/users.reducer';
 import {AuthEffects} from './store/auth/auth.effects';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './core/interceptors/auth.interceptor';
 import {authReducer} from './store/auth/auth.reducer';
+import {usersReducer} from './store/users/users.reducer';
+import {UsersEffects} from './store/users/users.effects';
 
 
 export interface AppState {
     auth: fromAuth.AuthState;
+    users: fromUsers.UsersState;
 }
 
 
 export const reducers: ActionReducerMap<AppState> = {
     auth: authReducer,
+    users: usersReducer,
 };
 
 @NgModule({
@@ -39,7 +44,7 @@ export const reducers: ActionReducerMap<AppState> = {
         HttpClientModule,
         StoreModule.forRoot(reducers),
         StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-        EffectsModule.forRoot([AuthEffects]),
+        EffectsModule.forRoot([AuthEffects, UsersEffects]),
         MatSidenavModule,
         MatCheckboxModule,
         FormsModule,

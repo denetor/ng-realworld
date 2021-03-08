@@ -14,7 +14,8 @@ export class UsersService {
 
 
     public getAll(): Observable<UserDto[] | UserDto> {
-        return this.http.get(environment.apiUrl + this.route);
+        console.log('UsersService.getAll()');
+        return this.http.get(environment.apiUrl + '/' + this.route);
     }
 
 
