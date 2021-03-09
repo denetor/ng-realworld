@@ -12,10 +12,6 @@ import {UsersState} from '../../../store/users/users.reducer';
 })
 export class AdminUsersComponent implements OnInit, OnDestroy {
     users$: Observable<UsersState>;
-    // table data
-    table = {
-        columns: ['name', 'lastName', 'email', 'actions'],
-    };
 
     constructor(
         private store: Store<AppState>,

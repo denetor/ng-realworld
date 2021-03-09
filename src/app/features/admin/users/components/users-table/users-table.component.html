@@ -1,0 +1,28 @@
+<table mat-table [dataSource]="(dataSource$ | async).items" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+    </ng-container>
+    <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef> Lastname </th>
+        <td mat-cell *matCellDef="let element"> {{ element.lastName }} </td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{ element.email }} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-icon-button aria-label="Edit" disabled="disabled">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="Delete" disabled="disabled">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="table.columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: table.columns;"></tr>
+</table>

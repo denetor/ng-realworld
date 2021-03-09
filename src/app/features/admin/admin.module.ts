@@ -7,11 +7,12 @@ import { AdminUsersComponent } from './users/admin-users.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { UsersTableComponent } from './users/components/users-table/users-table.component';
 
 
 
 @NgModule({
-    declarations: [AdminComponent, AdminUsersComponent],
+    declarations: [AdminComponent, AdminUsersComponent, UsersTableComponent],
     imports: [
         CommonModule,
         AdminRoutingModule,
