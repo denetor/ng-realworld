@@ -1,0 +1,56 @@
+<h1>Create user</h1>
+<div>
+    <button mat-raised-button (click)="gotoAdminUsers()">User's index</button>
+</div>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Lastname</mat-label>
+            <input matInput type="text" formControlName="lastName" required>
+        </mat-form-field>
+    </div>
+
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" required>
+        <mat-error *ngIf="userForm.controls['email'].hasError('email') && !userForm.controls['email'].hasError('required')">
+            Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="userForm.controls['email'].hasError('required')">
+            Email is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <div formGroupName="passwordGroup">
+        <mat-form-field>
+            <mat-label>Choose a secure password</mat-label>
+            <input matInput type="password" formControlName="password" required minlength="10">
+            <mat-hint>At least 10 characters</mat-hint>
+            <mat-error *ngIf="userForm.get('passwordGroup')['controls']['password'].hasError('minlength') && !userForm.get('passwordGroup')['controls']['password'].hasError('required')">
+                Password must be <strong>at least 10 characters</strong> long
+            </mat-error>
+            <mat-error *ngIf="userForm.get('passwordGroup')['controls']['password'].hasError('required')">
+                Password is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Retype password</mat-label>
+            <input matInput type="password" formControlName="passwordRetype">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <button mat-raised-button type="submit" [disabled]="!userForm.valid">Create</button>
+    </div>
+</form>
+
+<p>
+    Form Value: {{ userForm.value | json }}
+</p>
+<p>
+    Form Status: {{ userForm.status }}
+</p>

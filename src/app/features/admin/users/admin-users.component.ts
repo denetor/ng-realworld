@@ -4,6 +4,7 @@ import {AppState} from '../../../app.module';
 import {Observable} from 'rxjs';
 import {usersGetAll} from '../../../store/users/users.actions';
 import {UsersState} from '../../../store/users/users.reducer';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -15,6 +16,7 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
 
     constructor(
         private store: Store<AppState>,
+        private router: Router,
     ) { }
 
     ngOnInit(): void {
@@ -28,6 +30,10 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
+    }
+
+    gotoCreateUser(): void {
+        this.router.navigate(['admin', 'users', 'create']);
     }
 
 }

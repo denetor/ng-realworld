@@ -1,6 +1,6 @@
 <h1>Users administration</h1>
 <div>
-    <button mat-raised-button disabled="disabled">Create</button>
+    <button mat-raised-button (click)="gotoCreateUser()">Create</button>
 </div>
 <app-users-table [dataSource$]="users$"></app-users-table>
 

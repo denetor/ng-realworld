@@ -7,7 +7,7 @@ import { NavbarModule } from './core/navbar/navbar.module';
 import { SidemenuModule } from './core/sidemenu/sidemenu.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ActionReducerMap, StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
@@ -20,6 +20,8 @@ import {AuthInterceptor} from './core/interceptors/auth.interceptor';
 import {authReducer} from './store/auth/auth.reducer';
 import {usersReducer} from './store/users/users.reducer';
 import {UsersEffects} from './store/users/users.effects';
+import {MatFormFieldModule, MatLabel} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
 
 
 export interface AppState {
