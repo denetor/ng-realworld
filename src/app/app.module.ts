@@ -22,6 +22,8 @@ import {usersReducer} from './store/users/users.reducer';
 import {UsersEffects} from './store/users/users.effects';
 import {MatFormFieldModule, MatLabel} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
+import { FooterComponent } from './core/footer/footer.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 export interface AppState {
@@ -37,7 +39,8 @@ export const reducers: ActionReducerMap<AppState> = {
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        FooterComponent
     ],
     imports: [
         BrowserModule,
@@ -49,6 +52,7 @@ export const reducers: ActionReducerMap<AppState> = {
         EffectsModule.forRoot([AuthEffects, UsersEffects]),
         MatSidenavModule,
         MatCheckboxModule,
+        MatToolbarModule,
         FormsModule,
         NavbarModule,
         SidemenuModule,
