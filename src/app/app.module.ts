@@ -52,7 +52,6 @@ export const reducers: ActionReducerMap<AppState> = {
         EffectsModule.forRoot([AuthEffects, UsersEffects]),
         MatSidenavModule,
         MatCheckboxModule,
-        MatToolbarModule,
         FormsModule,
         NavbarModule,
         SidemenuModule,

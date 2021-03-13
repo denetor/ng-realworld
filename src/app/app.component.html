@@ -2,10 +2,12 @@
     <mat-sidenav #sidenav mode="side" [(opened)]="sidemenuOpened" *ngIf="(auth$ | async).accessToken">
         <app-sidemenu [auth]="auth$"></app-sidemenu>
     </mat-sidenav>
-    <mat-sidenav-content class="app-page-container">
+    <mat-sidenav-content class="app-main-container">
         <div>
             <app-navbar [auth]="auth$" (sidemenuToggleEvent)="sidemenuToggle()"></app-navbar>
-            <router-outlet></router-outlet>
+            <div class="app-page">
+                <router-outlet></router-outlet>
+            </div>
         </div>
         <app-footer></app-footer>
     </mat-sidenav-content>
