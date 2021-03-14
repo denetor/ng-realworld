@@ -8,19 +8,19 @@ import {UserDto} from './user.model';
     providedIn: 'root'
 })
 export class UsersService {
-    private readonly route = 'users';
+    private readonly route = '/users';
 
     constructor(private http: HttpClient) {}
 
 
     public getAll(): Observable<UserDto[] | UserDto> {
         console.log('UsersService.getAll()');
-        return this.http.get(environment.apiUrl + '/' + this.route);
+        return this.http.get(environment.apiUrl + this.route);
     }
 
 
     getMyself(): Observable<UserDto> {
-        return this.http.get(environment.apiUrl + '/' + this.route + '/myself');
+        return this.http.get(environment.apiUrl + this.route + '/myself');
     }
 
 
@@ -48,7 +48,7 @@ export class UsersService {
     }
 
 
-    public insert(entity): Observable<UserDto> {
+    public insert(entity: UserDto): Observable<UserDto> {
         return this.http.post(environment.apiUrl + this.route, entity);
     }
 

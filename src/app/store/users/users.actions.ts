@@ -22,3 +22,15 @@ export const usersGetAllSuccess = createAction(
 export const usersGetAllFailure = createAction(
     '[users]getAll.failure'
 );
+
+export const usersCreate = createAction(
+    '[users]create',
+    props<UserDto>()
+);
+export const usersCreateSuccess = createAction(
+    '[users]create.success',
+    (user: UserDto) => ({payload: user})
+);
+export const usersCreateFailure = createAction(
+    '[users]create.failure'
+);

@@ -18,13 +18,10 @@ export const authReducer = createReducer(
         return state;
     }),
     on(authenticateSuccess, (state: AuthState, action) => {
-        console.log('on authenticateSuccess');
-        console.log({state, action});
         const newState = {
             accessToken: action && action.payload && action.payload.access_token ? action.payload.access_token : null,
             user: null,
         };
-        console.log({newState});
         // save accessToken in localStorage
         localStorage.setItem('access_token', newState.accessToken);
         return newState;
@@ -33,10 +30,7 @@ export const authReducer = createReducer(
         return state;
     }),
     on(readCurrentUserSuccess, (state: AuthState, action) => {
-        console.log('on readCurrentUserSuccess');
-        console.log({state, action});
         const newState = {...state, user: action.payload};
-        console.log({newState});
         return newState;
     }),
     on(logout, (state: AuthState, action) => {

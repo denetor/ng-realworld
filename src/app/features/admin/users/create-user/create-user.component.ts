@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
+import {UserDto} from '../../../../store/users/user.model';
+import {usersCreate} from '../../../../store/users/users.actions';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../../../app.module';
 
 @Component({
   selector: 'app-create-user',
@@ -22,6 +26,7 @@ export class CreateUserComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
+        private store: Store<AppState>,
     ) { }
 
     ngOnInit(): void {
@@ -32,7 +37,18 @@ export class CreateUserComponent implements OnInit {
     }
 
     onSubmit(): void {
-        console.log(this.userForm.value);
+        const dto: UserDto = {
+            name: this.userForm.get('name').value,
+            lastName: this.userForm.get('lastName').value,
+            email: this.userForm.get('email').value,
+            password: this.userForm.get('passwordGroup')['controls']['password'].value,
+        };
+        this.store.dispatch(usersCreate(dto));
+    }
+
+    isPasswordRetyped(): boolean {
+        return this.userForm.get('passwordGroup')['controls']['password'].value ===
+            this.userForm.get('passwordGroup')['controls']['passwordRetype'].value;
     }
 
 }

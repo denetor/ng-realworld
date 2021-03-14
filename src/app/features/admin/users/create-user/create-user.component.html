@@ -40,17 +40,16 @@
         <mat-form-field>
             <mat-label>Retype password</mat-label>
             <input matInput type="password" formControlName="passwordRetype">
+            <mat-error *ngIf="!isPasswordRetyped()">
+                Passwords different
+            </mat-error>
         </mat-form-field>
     </div>
 
     <div>
-        <button mat-raised-button type="submit" [disabled]="!userForm.valid">Create</button>
+        <button mat-raised-button
+                type="submit"
+                [disabled]="!userForm.valid || !isPasswordRetyped()">Create</button>
     </div>
 </form>
 
-<p>
-    Form Value: {{ userForm.value | json }}
-</p>
-<p>
-    Form Status: {{ userForm.status }}
-</p>

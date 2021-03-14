@@ -32,8 +32,6 @@ export class AuthEffects {
         mergeMap((action) => this.usersService.getMyself()
             .pipe(
                 map(response => {
-                    console.log('AuthEffects.readCurrentUser response:');
-                    console.log({response});
                     return {type: '[auth] readCurrentUser success', payload: response};
                 }),
                 catchError(() => EMPTY)

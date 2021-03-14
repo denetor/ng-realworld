@@ -45,8 +45,6 @@ export class SigninLoginComponent implements OnInit {
             email: this.emailFormControl.value,
             password: this.passwordFormControl.value,
         };
-        console.log('SigninLoginComponent.doLogin(): dispatching authenticate event');
-        console.log({dto});
         this.store.dispatch(authenticate(dto));
     }
 

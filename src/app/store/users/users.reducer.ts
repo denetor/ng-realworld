@@ -1,6 +1,6 @@
 import {UserDto} from './user.model';
 import {createReducer, on} from '@ngrx/store';
-import {usersGetAll, usersGetAllSuccess} from './users.actions';
+import {usersGetAll, usersGetAllSuccess, usersCreateSuccess} from './users.actions';
 
 export interface UsersState {
     items: UserDto[];
@@ -20,5 +20,5 @@ export const usersReducer = createReducer(
         console.log('usersReducer.on.usersGetAllSuccess');
         console.log({state, action});
         return {...state, items: action.payload};
-    })
+    }),
 );
